@@ -8,3 +8,7 @@ Aplikasi ini dibuat menggunakan PHP native untuk menampilkan data penduduk dari 
 - Pagination untuk navigasi halaman data
 - Visualisasi grafik jumlah penduduk berdasarkan agama, jenis kelamin & umur
 - Tombol export data ke file CSV
+
+
+## Note
+Harus ada koneksi internet ketika menjalankan aplikasi ini, karena saya menggunakan langsung cdn dari Tailwind CSS dan Chart.js
