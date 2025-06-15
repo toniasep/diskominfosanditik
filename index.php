@@ -39,6 +39,10 @@ foreach ($listData as $item) {
     elseif ($umur <= 50) $umurKategori['41-50']++;
     elseif ($umur <= 60) $umurKategori['51-60']++;
     else $umurKategori['61+']++;
+
+    // count provinsi
+    $prov = $item['provinsi'];
+    $provinsi[$prov]++;
 }
 // var_dump($agama);
 // die;
@@ -74,7 +78,6 @@ foreach ($listData as $item) {
 
 
         <div class="flex justify-center gap-4 mb-6">
-            <!-- Tombol Prev -->
             <?php if ($dataObj['prev_page_url']): ?>
                 <a href="<?= '?url=' . $dataObj['prev_page_url'] ?>"
                     class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
@@ -110,14 +113,17 @@ foreach ($listData as $item) {
                 <canvas id="chartGender"></canvas>
             </div>
             <div class="bg-white p-4 rounded shadow">
+                <h2 class="text-lg font-semibold mb-3 text-center">Provinsi</h2>
+                <canvas id="chartProv"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
                 <h2 class="text-lg font-semibold mb-3 text-center">Agama</h2>
                 <canvas id="chartAgama"></canvas>
             </div>
-        </div>
-
-        <div class="bg-white mt-6 p-4 rounded shadow">
-            <h2 class="text-lg font-semibold mb-3 text-center">Umur</h2>
-            <canvas id="chartUmur"></canvas>
+            <div class="bg-white p-4 rounded shadow">
+                <h2 class="text-lg font-semibold mb-3 text-center">Umur</h2>
+                <canvas id="chartUmur"></canvas>
+            </div>
         </div>
     </div>
     <?php
@@ -140,11 +146,33 @@ foreach ($listData as $item) {
             options: {
                 plugins: {
                     legend: {
-                        position: 'top'
+                        position: 'bottom'
                     }
                 }
             }
         });
+
+        // Data Provinsi
+        const dataProv = {
+            labels: <?= json_encode(array_keys($provinsi)) ?>,
+            datasets: [{
+                label: 'Jumlah',
+                data: <?= json_encode(array_values($provinsi)) ?>,
+                backgroundColor: ['#4F46E5', '#EC4899', '#F59E0B', '#10B981', '#EAB308', '#3B82F6', '#8B5CF6', '#F472B6', '#F87171', '#FBBF24', '#FDE047']
+            }]
+        };
+        new Chart(document.getElementById('chartProv'), {
+            type: 'doughnut',
+            data: dataProv,
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
 
         // Data agama
         const dataAgama = {
@@ -159,7 +187,6 @@ foreach ($listData as $item) {
             type: 'bar',
             data: dataAgama,
             options: {
-                // maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         display: false
