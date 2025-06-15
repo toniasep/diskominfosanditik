@@ -81,18 +81,18 @@ foreach ($listData as $item) {
             <?php if ($dataObj['prev_page_url']): ?>
                 <a href="<?= '?url=' . $dataObj['prev_page_url'] ?>"
                     class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-                    &laquo; Prev
+                    &laquo; Data Sebelumnya
                 </a>
             <?php else: ?>
                 <span class="bg-gray-300 text-gray-500 font-semibold py-2 px-4 rounded cursor-not-allowed">
-                    &laquo; Prev
+                    &laquo; Data Sebelumnya
                 </span>
             <?php endif; ?>
 
             <?php if ($dataObj['next_page_url']): ?>
                 <a href="<?= '?url=' . $dataObj['next_page_url'] ?>"
                     class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-                    Data Sebelumnya &raquo;
+                    Data Selanjutnya &raquo;
                 </a>
             <?php else: ?>
                 <span class="bg-gray-300 text-gray-500 font-semibold py-2 px-4 rounded cursor-not-allowed">
