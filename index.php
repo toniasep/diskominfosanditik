@@ -99,15 +99,9 @@ foreach ($listData as $item) {
                     Data Selanjutnya &raquo;
                 </span>
             <?php endif; ?>
-
-            <form method="post" action="export.php?url=<?= $url ?>">
-                <button type="submit" name="export_csv" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
-                    Export to CSV
-                </button>
-            </form>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-6">
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
             <div class="bg-white p-4 rounded shadow">
                 <h2 class="text-lg font-semibold mb-3 text-center">Jenis Kelamin</h2>
                 <canvas id="chartGender"></canvas>
@@ -124,6 +118,89 @@ foreach ($listData as $item) {
                 <h2 class="text-lg font-semibold mb-3 text-center">Umur</h2>
                 <canvas id="chartUmur"></canvas>
             </div>
+        </div>
+
+
+        <div class="flex justify-center gap-4 mb-6">
+            <form method="post" action="export.php?url=<?= $url ?>">
+                <button type="submit" name="export_csv" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+                    Export Data to CSV
+                </button>
+            </form>
+        </div>
+        <!-- {
+        "id": 11,
+        "nik": "1127729522657873",
+        "nama_lengkap": "Salwa Wastuti M.Ak",
+        "jenis_kelamin": "Laki-laki",
+        "tempat_lahir": "Banda Aceh",
+        "tanggal_lahir": "2001-04-27",
+        "agama": "Budha",
+        "status_perkawinan": "Cerai Hidup",
+        "pekerjaan": "Penambang",
+        "pendidikan_terakhir": "S3",
+        "kewarganegaraan": "Indonesia",
+        "alamat": "Dk. Mulyadi No. 336, Subulussalam 23663, Sumbar",
+        "rt": "01",
+        "rw": "10",
+        "dusun": "Salak",
+        "desa": "Ville",
+        "kecamatan": "Bau-Bau",
+        "kabupaten": "Banjarbaru",
+        "provinsi": "Sulawesi Barat",
+        "created_at": "2025-06-12T07:10:38.000000Z",
+        "updated_at": "2025-06-12T07:10:38.000000Z"
+        }, -->
+        <div class="overflow-x-auto mt-8 shadow-md rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200 bg-white">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">No</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Nama Lengkap</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">NIK</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Alamat</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">RT</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">RW</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Dusun</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Desa</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Kecamatan</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Kabupaten</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Provinsi</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Tempat Lahir</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Tanggal Lahir</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Agama</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Pekerjaan</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Jenis Kelamin</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Pendidikan Terakhir</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Status Perkawinan</th>
+
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    <?php foreach ($dataObj['data'] as $i => $item): ?>
+                        <tr class="<?= $i % 2 === 0 ? 'bg-white' : 'bg-gray-50' ?>">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><?= $i + 1 ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['nama_lengkap'] ?? '-') ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['nik'] ?? '-') ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['alamat'] ?? '-')  ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['rt'] ?? '-')  ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['rw'] ?? '-')  ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['dusun'] ?? '-')  ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['desa'] ?? '-')  ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['kecamatan'] ?? '-')  ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['kabupaten'] ?? '-')  ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['provinsi'] ?? '-')  ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['tempat_lahir'] ?? '-')  ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['tanggal_lahir'] ?? '-')  ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['agama'] ?? '-') ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['pekerjaan'] ?? '-') ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['jenis_kelamin'] ?? '-') ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['pendidikan_terakhir'] ?? '-') ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($item['status_perkawinan'] ?? '-') ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
     <?php
